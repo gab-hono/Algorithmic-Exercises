@@ -57,18 +57,121 @@
             ######
  */
 
-function taille(n) {
-    let bord = "*";
-    let vide = " ";
+// Exercice – Dessiner un carré en ASCII ⬛
 
-    console.log(bord.repeat(n))
+function dessinerCarre(n) {
+  if (n < 1) {
+    console.log("La taille doit être >= 1");
+    return;
+  }
 
-    for (let i=0; i<n-2; i++) {
-        console.log(bord + (vide.repeat(n-2)) + bord);
+  const bord = "#";
+  const vide = " ";
+
+  // Cas spécial : n = 1
+  if (n === 1) {
+    console.log(bord);
+    return;
+  }
+
+  // Ligne du haut
+  let ligneHaut = "";
+  for (let i = 0; i < n; i++) {
+    ligneHaut += bord;
+  }
+  console.log(ligneHaut);
+
+  // Lignes du milieu (n - 2 lignes)
+  for (let i = 0; i < n - 2; i++) {
+    let ligneMilieu = bord;
+    for (let j = 0; j < n - 2; j++) {
+      ligneMilieu += vide;
     }
+    ligneMilieu += bord;
+    console.log(ligneMilieu);
+  }
 
-    console.log(bord.repeat(n));
-
+  // Ligne du bas (identique à celle du haut)
+  console.log(ligneHaut);
 }
 
-taille(10);
+// Bonus 1 – Carré plein ⭐
+function dessinercarrePlein(n) {
+  if (n < 1) {
+    console.log("La taille doit être >= 1");
+    return;
+  }
+
+  const bord = "#";
+
+  for (let i = 0; i < n; i++) {
+    let ligne = "";
+    for (let j = 0; j < n; j++) {
+      ligne += bord;
+    }
+    console.log(ligne);
+  }
+}
+
+// Bonus 2 – Rectangle 📐
+function dessinerRectangle(largeur, hauteur) {
+  if (largeur < 1 || hauteur < 1) {
+    console.log("La largeur et la hauteur doivent être >= 1");
+    return;
+  }
+
+  const bord = "#";
+  const vide = " ";
+
+  // Cas spécial : hauteur = 1
+  if (hauteur === 1) {
+    let ligne = "";
+    for (let i = 0; i < largeur; i++) {
+      ligne += bord;
+    }
+    console.log(ligne);
+    return;
+  }
+
+  // Ligne du haut
+  let ligneHaut = "";
+  for (let i = 0; i < largeur; i++) {
+    ligneHaut += bord;
+  }
+  console.log(ligneHaut);
+
+  // Lignes du milieu
+  for (let i = 0; i < hauteur - 2; i++) {
+    let ligneMilieu = bord;
+    for (let j = 0; j < largeur - 2; j++) {
+      ligneMilieu += vide;
+    }
+    ligneMilieu += bord;
+    console.log(ligneMilieu);
+  }
+
+  // Ligne du bas
+  console.log(ligneHaut);
+}
+
+// Tests
+console.log("=== Carré n = 2 ===");
+dessinerCarre(2);
+
+console.log("\n=== Carré n = 3 ===");
+dessinerCarre(3);
+
+console.log("\n=== Carré n = 4 ===");
+dessinerCarre(4);
+
+console.log("\n=== Carré n = 7 ===");
+dessinerCarre(7);
+
+console.log("\n=== Carré plein n = 4 ===");
+dessinercarrePlein(4);
+
+console.log("\n=== Rectangle largeur = 6, hauteur = 3 ===");
+dessinerRectangle(6, 3);
+
+console.log("\n=== Rectangle largeur = 8, hauteur = 5 ===");
+dessinerRectangle(8, 5);
